@@ -30,8 +30,11 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities:
-              - gpu
+            - driver: nvidia
+              count: 4
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
     expose:
       - "9999"
     networks:
@@ -45,8 +48,12 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities:
-              - gpu
+            - driver: nvidia
+              count: 4
+              capabilities: [gpu]
+              
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
     expose:
       - "9998"
     networks:
