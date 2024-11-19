@@ -24,17 +24,12 @@ services:
       replicas: 10
 
   grammar_correction:
-    image:  chelliryc/arwi-grammar-correction:0.1.3
+    image:  chelliryc/arwi-grammar-correction:0.1.5
     deploy:
       replicas: 50
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 4
-              capabilities: [gpu]
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_VISIBLE_DEVICES=0,1,2,3
+      - NVIDIA_DRIVER_CAPABILITIES=all
     expose:
       - "9999"
     networks:
@@ -42,18 +37,12 @@ services:
     restart: always
 
   essay_scoring:
-    image: chelliryc/arwi-essay-scoring:0.1.3
+    image: chelliryc/arwi-essay-scoring:0.1.5
     deploy:
       replicas: 50
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 4
-              capabilities: [gpu]
-              
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_VISIBLE_DEVICES=0,1,2,3  
+      - NVIDIA_DRIVER_CAPABILITIES=all
     expose:
       - "9998"
     networks:
