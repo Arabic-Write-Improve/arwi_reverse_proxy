@@ -7,8 +7,8 @@ services:
     volumes:
       - ./arwi_reverse_proxy_docker.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 80:80
-      - 443:443
+      - 8088:80
+      - 8443:443
     networks:
       - arwi_network
     restart: always
@@ -21,12 +21,12 @@ services:
       - "7777"
     restart: always
     deploy:
-      replicas: 10
+      replicas: 1
 
   grammar_correction:
-    image:  chelliryc/arwi-grammar-correction:0.1.5
+    image:  chelliryc/arwi-grammar-correction:0.1.6.2
     deploy:
-      replicas: 50
+      replicas: 1
     environment:
       - NVIDIA_VISIBLE_DEVICES=0,1,2,3
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -37,9 +37,9 @@ services:
     restart: always
 
   essay_scoring:
-    image: chelliryc/arwi-essay-scoring:0.1.5
+    image: chelliryc/arwi-essay-scoring:0.1.6.2
     deploy:
-      replicas: 50
+      replicas: 1
     environment:
       - NVIDIA_VISIBLE_DEVICES=0,1,2,3  
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -57,7 +57,7 @@ services:
       - arwi_network
     restart: always
     deploy:
-      replicas: 10
+      replicas: 1
 
 networks:
   arwi_network:
