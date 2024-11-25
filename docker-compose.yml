@@ -26,7 +26,7 @@ services:
   grammar_correction:
     image:  chelliryc/arwi-grammar-correction:0.1.3
     deploy:
-      replicas: 50
+      replicas: 10
       resources:
         reservations:
           devices:
@@ -44,7 +44,7 @@ services:
   essay_scoring:
     image: chelliryc/arwi-essay-scoring:0.1.3
     deploy:
-      replicas: 50
+      replicas: 10
       resources:
         reservations:
           devices:
