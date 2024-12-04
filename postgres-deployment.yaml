@@ -82,9 +82,9 @@ kind: Service
 metadata:
   name: postgres-service
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 5432
-    targetPort: 5432
+    targetPort: 35432
   selector:
     app: postgres
