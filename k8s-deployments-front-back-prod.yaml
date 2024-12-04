@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend-ui
-        image: chelliryc/arwi-frontend-ui:0.1.3.9
+        image: chelliryc/arwi-frontend-ui:0.1.3.10
         ports:
         - containerPort: 7777
 ---
@@ -42,6 +42,14 @@ spec:
         image: chelliryc/arwi-backend:0.1.4
         ports:
         - containerPort: 9997
+        volumeMounts:
+        - name: env-file
+          mountPath: /app/.env
+          subPath: .env
+      volumes:
+      - name: env-file
+        configMap:
+          name: backend-env
 ---
 
 apiVersion: v1

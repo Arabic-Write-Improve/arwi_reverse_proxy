@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-env
+data:
+  .env: |
+    PG_DATABASE_URI=postgresql+asyncpg://arwi:arwi@postgres-service:5432/arwi_db
