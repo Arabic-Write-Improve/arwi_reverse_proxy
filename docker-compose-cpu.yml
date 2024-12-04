@@ -52,6 +52,21 @@ services:
     restart: always
     deploy:
       replicas: 1
+  
+  postgres:
+    image: postgres:17.2
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=arwi
+      - POSTGRES_PASSWORD=arwi
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
+    ports:
+      - 15432:5432
+    restart: always
+    command: -c config_file=/etc/postgresql/postgresql.conf
 
 networks:
   arwi_network:
